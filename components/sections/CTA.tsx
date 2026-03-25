@@ -25,14 +25,18 @@ export function CTA() {
 
           {/* CTA buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button size="lg" className="group">
-              <Calendar className="mr-2 w-5 h-5" />
-              预约产品演示
-              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
-            <Button variant="secondary" size="lg">
-              联系我们
-            </Button>
+            <a href="/contact">
+              <Button size="lg" className="group">
+                <Calendar className="mr-2 w-5 h-5" />
+                预约产品演示
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </a>
+            <a href="/contact">
+              <Button variant="secondary" size="lg">
+                联系我们
+              </Button>
+            </a>
           </div>
 
           {/* Contact info */}
@@ -42,18 +46,18 @@ export function CTA() {
             </p>
             <div className="flex flex-wrap items-center justify-center gap-6 text-slate-400">
               <a
-                href="mailto:contact@example.com"
+                href="mailto:bowen@aiagentspeedup.com"
                 className="flex items-center gap-2 hover:text-cyan-400 transition-colors"
               >
                 <span className="w-2 h-2 rounded-full bg-cyan-400" />
-                contact@example.com
+                bowen@aiagentspeedup.com
               </a>
               <a
-                href="tel:+86-755-xxxxxxx"
+                href="#"
                 className="flex items-center gap-2 hover:text-cyan-400 transition-colors"
               >
                 <span className="w-2 h-2 rounded-full bg-cyan-400" />
-                0755-XXXXXXXX
+                微信 healthybowen
               </a>
             </div>
           </div>

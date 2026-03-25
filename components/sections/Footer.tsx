@@ -43,12 +43,6 @@ export function Footer() {
             ))}
           </div>
 
-          {/* ICP */}
-          <div className="text-center md:text-right">
-            <p className="text-slate-500 text-sm">
-              粤ICP备 xxxxxxxx 号
-            </p>
-          </div>
         </div>
 
         {/* Bottom tagline */}

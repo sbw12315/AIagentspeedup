@@ -1,4 +1,7 @@
-import { MessageCircle, Mail, Phone, Clock3, ArrowRight } from "lucide-react";
+"use client";
+
+import { useState } from "react";
+import { MessageCircle, Mail, Clock3, ArrowRight, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 
 const prepChecklist = [
@@ -21,6 +24,47 @@ const prepChecklist = [
 ];
 
 export function ContactConsultation() {
+  const [formData, setFormData] = useState<{
+    name: string;
+    company: string;
+    contact: string;
+    message: string;
+  }>({
+    name: "",
+    company: "",
+    contact: "",
+    message: "",
+  });
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = () => {
+    const subject = encodeURIComponent(`预约咨询需求 - ${formData.name || "未填写姓名"}`);
+    const body = encodeURIComponent(
+      `姓名: ${formData.name || "未填写"}\n公司/团队: ${formData.company || "未填写"}\n联系方式: ${formData.contact || "未填写"}\n\n本次最想先聊的内容:\n${formData.message || "未填写"}`
+    );
+    window.location.href = `mailto:bowen@aiagentspeedup.com?subject=${subject}&body=${body}`;
+    setSubmitted(true);
+  };
+
+  if (submitted) {
+    return (
+      <section id="contact" className="relative py-20 sm:py-28 bg-[#0a0f1a]">
+        <div className="absolute inset-0 grid-pattern opacity-25" />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-500/20 mb-6">
+            <CheckCircle className="w-8 h-8 text-green-400" />
+          </div>
+          <h3 className="text-2xl font-bold text-white mb-2">预约需求已提交</h3>
+          <p className="text-slate-400">我们已收到您的预约请求，会尽快通过邮件与您联系。</p>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section id="contact" className="relative py-20 sm:py-28 bg-[#0a0f1a]">
       <div className="absolute inset-0 grid-pattern opacity-25" />
@@ -65,56 +109,61 @@ export function ContactConsultation() {
 
           <div className="xl:col-span-2 space-y-6">
             <div className="p-6 rounded-2xl bg-[#111827]/60 border border-[#1e293b]">
-              <h3 className="text-xl font-semibold text-white mb-4">直接联系</h3>
-              <div className="space-y-3 text-sm">
+              <h3 className="text-xl font-semibold text-white mb-4 text-center">直接联系</h3>
+              <div className="flex flex-col items-center gap-3 text-sm">
                 <a
                   href="#"
                   className="flex items-center gap-3 text-slate-300 hover:text-cyan-400 transition-colors"
                 >
                   <MessageCircle className="w-4 h-4" />
-                  微信咨询（适合快速约时间）
+                  微信 healthybowen
                 </a>
                 <a
-                  href="mailto:contact@example.com"
+                  href="mailto:bowen@aiagentspeedup.com"
                   className="flex items-center gap-3 text-slate-300 hover:text-cyan-400 transition-colors"
                 >
                   <Mail className="w-4 h-4" />
-                  contact@example.com
-                </a>
-                <a
-                  href="tel:+86-755-xxxxxxx"
-                  className="flex items-center gap-3 text-slate-300 hover:text-cyan-400 transition-colors"
-                >
-                  <Phone className="w-4 h-4" />
-                  0755-XXXXXXXX
+                  bowen@aiagentspeedup.com
                 </a>
               </div>
             </div>
 
             <div className="p-6 rounded-2xl bg-[#111827]/60 border border-[#1e293b]">
-              <h3 className="text-xl font-semibold text-white mb-4">提交预约信息</h3>
+              <h3 className="text-xl font-semibold text-white mb-4 text-center">提交预约信息</h3>
               <div className="space-y-3">
                 <input
+                  name="name"
                   type="text"
                   placeholder="姓名"
+                  value={formData.name}
+                  onChange={handleChange}
                   className="w-full px-4 py-3 rounded-xl bg-[#0a0f1a]/80 border border-[#1e293b] text-slate-200 placeholder:text-slate-500 focus:outline-none focus:border-cyan-500/50"
                 />
                 <input
+                  name="company"
                   type="text"
                   placeholder="公司 / 团队"
+                  value={formData.company}
+                  onChange={handleChange}
                   className="w-full px-4 py-3 rounded-xl bg-[#0a0f1a]/80 border border-[#1e293b] text-slate-200 placeholder:text-slate-500 focus:outline-none focus:border-cyan-500/50"
                 />
                 <input
+                  name="contact"
                   type="text"
                   placeholder="联系方式"
+                  value={formData.contact}
+                  onChange={handleChange}
                   className="w-full px-4 py-3 rounded-xl bg-[#0a0f1a]/80 border border-[#1e293b] text-slate-200 placeholder:text-slate-500 focus:outline-none focus:border-cyan-500/50"
                 />
                 <textarea
+                  name="message"
                   placeholder="本次最想先聊什么（场景、目标、周期）"
                   rows={4}
+                  value={formData.message}
+                  onChange={handleChange}
                   className="w-full px-4 py-3 rounded-xl bg-[#0a0f1a]/80 border border-[#1e293b] text-slate-200 placeholder:text-slate-500 focus:outline-none focus:border-cyan-500/50 resize-none"
                 />
-                <Button className="w-full group">
+                <Button className="w-full group" onClick={handleSubmit}>
                   提交预约需求
                   <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Button>

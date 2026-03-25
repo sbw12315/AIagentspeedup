@@ -5,26 +5,27 @@ import { Zap, Clock, ShieldCheck, Users } from "lucide-react";
 
 const stats = [
   {
-    value: 70,
+    value: 75,
     suffix: "%",
     label: "效率提升",
     icon: Zap,
   },
   {
-    value: 50,
+    value: 92,
     suffix: "%",
     label: "时间成本降低",
     icon: Clock,
   },
   {
-    value: 95,
+    value: 50,
+    prefix: ">",
     suffix: "%",
     label: "审核一次通过率",
     icon: ShieldCheck,
   },
   {
-    value: 24,
-    suffix: "×7",
+    value: 7,
+    suffix: "x24",
     label: "全程人工可控",
     icon: Users,
   },
@@ -54,6 +55,7 @@ export function ValueProps() {
             >
               <StatCard
                 value={stat.value}
+                prefix={stat.prefix}
                 suffix={stat.suffix}
                 label={stat.label}
               />

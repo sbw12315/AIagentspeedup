@@ -62,13 +62,17 @@ export function Hero() {
 
             {/* CTA Buttons */}
             <div className="flex flex-wrap gap-4 animate-fade-in-up delay-300">
-              <Button size="lg" className="group">
-                预约产品演示
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-              <Button variant="secondary" size="lg">
-                了解更多
-              </Button>
+              <a href="/contact">
+                <Button size="lg" className="group">
+                  预约产品演示
+                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </a>
+              <a href="/contact">
+                <Button variant="secondary" size="lg">
+                  了解更多
+                </Button>
+              </a>
             </div>
           </div>
 
