@@ -140,11 +140,6 @@ export function Process() {
                   />
                 </div>
 
-                {/* Connector line */}
-                {index < steps.length - 1 && (
-                  <div className="absolute left-1/2 top-12 -translate-x-1/2 w-0.5 h-14 bg-gradient-to-b from-cyan-500/50 to-purple-500/50" />
-                )}
-
                 {/* Content */}
                 <div className="mt-4 flex flex-col items-center">
                   <div className="flex items-center justify-center gap-2">
