@@ -62,11 +62,11 @@ export function Process() {
         {/* Process flow */}
         <div className="relative">
           {/* Desktop view - horizontal */}
-          <div className="hidden lg:flex items-center justify-between gap-4">
+          <div className="hidden lg:flex items-start justify-center">
             {steps.map((step, index) => (
-              <div key={index} className="flex items-center">
+              <div key={index} className="flex items-start">
                 {/* Step */}
-                <div className="flex flex-col items-center">
+                <div className="w-36 flex flex-col items-center text-center">
                   {/* Icon circle */}
                   <div
                     className={cn(
@@ -89,7 +89,7 @@ export function Process() {
                   </div>
 
                   {/* Title */}
-                  <div className="mt-4 text-center">
+                  <div className="mt-4 min-h-[76px] flex flex-col items-center justify-start">
                     <h4
                       className={cn(
                         "text-base font-semibold",
@@ -111,7 +111,7 @@ export function Process() {
 
                 {/* Connector */}
                 {index < steps.length - 1 && (
-                  <div className="w-16 h-0.5 bg-gradient-to-r from-cyan-500/50 to-purple-500/50 mx-4 relative overflow-hidden">
+                  <div className="relative mt-10 w-16 h-0.5 bg-gradient-to-r from-cyan-500/50 to-purple-500/50 mx-4 overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent animate-flow-line" />
                   </div>
                 )}
@@ -120,13 +120,13 @@ export function Process() {
           </div>
 
           {/* Mobile view - vertical */}
-          <div className="lg:hidden flex flex-col gap-6 max-w-sm mx-auto">
+          <div className="lg:hidden flex flex-col gap-0 max-w-sm mx-auto">
             {steps.map((step, index) => (
-              <div key={index} className="flex items-center gap-4">
+              <div key={index} className="relative flex flex-col items-center text-center pb-8">
                 {/* Step number circle */}
                 <div
                   className={cn(
-                    "relative w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0",
+                    "relative z-10 w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0",
                     step.isHuman
                       ? "bg-slate-700 border-2 border-slate-500"
                       : "bg-gradient-to-br from-cyan-500 to-purple-500 border-2 border-cyan-400/50"
@@ -140,9 +140,14 @@ export function Process() {
                   />
                 </div>
 
+                {/* Connector line */}
+                {index < steps.length - 1 && (
+                  <div className="absolute left-1/2 top-12 -translate-x-1/2 w-0.5 h-14 bg-gradient-to-b from-cyan-500/50 to-purple-500/50" />
+                )}
+
                 {/* Content */}
-                <div className="flex-1">
-                  <div className="flex items-center gap-2">
+                <div className="mt-4 flex flex-col items-center">
+                  <div className="flex items-center justify-center gap-2">
                     <h4
                       className={cn(
                         "text-base font-semibold",
@@ -159,11 +164,6 @@ export function Process() {
                   </div>
                   <p className="text-sm text-slate-500">{step.description}</p>
                 </div>
-
-                {/* Connector line */}
-                {index < steps.length - 1 && (
-                  <div className="absolute left-[2.4rem] top-20 bottom-0 w-0.5 h-6 bg-gradient-to-b from-cyan-500/50 to-purple-500/50" />
-                )}
               </div>
             ))}
           </div>
